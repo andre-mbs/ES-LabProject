@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" >
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Index</title>
+    </head>
+    <body>
+        <h1>IPMA Daily Forecast by zone</h1>
+        <table style="width:100%">
+            <tr>
+              <th style="text-align: left">Global Id Local</th>
+              <th style="text-align: left">Latitude</th>
+              <th style="text-align: left">Longitude</th>
+              <th style="text-align: left"> Min Temp</th>
+              <th style="text-align: left">Max Temp</th>
+              <th style="text-align: left">Precipitation Probability</th>
+              <th style="text-align: left">Weather type</th>
+              <th style="text-align: left">Wind direction</th>
+              <th style="text-align: left">Wind speed class</th>
+              
+              
+            </tr>
+            
+            <tr  th:each="forecast: ${forecast.data}">
+                    <td th:text="${forecast.globalIdLocal}"/>                
+                    <td th:text="${forecast.latitude}" />
+                    <td th:text="${forecast.longitude}"/>
+                    <td th:text="${forecast.tMin}"/>
+                    <td th:text="${forecast.tMax}"/>
+                    <td th:text="${forecast.precipitaProb}"/>
+                    <td th:text="${forecast.idWeatherType}"/>
+                    <td th:text="${forecast.predWindDir}"/>
+                    
+                    <td th:text="${forecast.classWindSpeed}"/>
+                    
+            </tr>
+            
+        
+         </table>
+
+    </body>
+</html>
