@@ -4,44 +4,65 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" >
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Index</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <title>BitCoinPrice</title>
     </head>
+    
+    
     <body>
-        <h1>IPMA Daily Forecast by zone</h1>
-        <table style="width:100%">
-            <tr>
-              <th style="text-align: left">Global Id Local</th>
-              <th style="text-align: left">Latitude</th>
-              <th style="text-align: left">Longitude</th>
-              <th style="text-align: left"> Min Temp</th>
-              <th style="text-align: left">Max Temp</th>
-              <th style="text-align: left">Precipitation Probability</th>
-              <th style="text-align: left">Weather type</th>
-              <th style="text-align: left">Wind direction</th>
-              <th style="text-align: left">Wind speed class</th>
-              
+        <h1>BitCoin price in <text th:text="${btcprice.ticker.target}"/></text></h1>
+        <h2>Last Updated: <text id="time" th:text="${time}"/> </h2>
+        <br/>             
+        <h3>Total</h3>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                 <th  scope="col">Price</th>
+                 <th scope="col">Volume</th>
+                 <th  scope="col">Change</th>
+               </tr>
+            </thead>
+            
+            <tbody>
+                <tr >
+                  <td th:text="${btcprice.ticker.price}"/>                
+                  <td th:text="${btcprice.ticker.volume}" />
+                  <td th:text="${btcprice.ticker.change}"/>
+                </tr>
+            </tbody>
+         </table>
+        
+        
+        <br/>             
+
+        <h3>Markets</h3> 
+        <table class="table">
+            <thead>
+             <tr >
+              <th scope="col">Market</th>
+              <th scope="col">Price</th>
+              <th scope="col">Volume</th>
               
             </tr>
+            </thead>
             
-            <tr  th:each="forecast: ${forecast.data}">
-                    <td th:text="${forecast.globalIdLocal}"/>                
-                    <td th:text="${forecast.latitude}" />
-                    <td th:text="${forecast.longitude}"/>
-                    <td th:text="${forecast.tMin}"/>
-                    <td th:text="${forecast.tMax}"/>
-                    <td th:text="${forecast.precipitaProb}"/>
-                    <td th:text="${forecast.idWeatherType}"/>
-                    <td th:text="${forecast.predWindDir}"/>
-                    
-                    <td th:text="${forecast.classWindSpeed}"/>
-                    
-            </tr>
+            <tbody>
+               <tr  th:each="btcprice: ${btcprice.ticker.markets}">
+                <td th:text="${btcprice.market}"/>                
+                <td th:text="${btcprice.price}" />
+                <td th:text="${btcprice.volume}"/>
+               </tr>
             
+            </tbody>
         
          </table>
 
     </body>
 </html>
+

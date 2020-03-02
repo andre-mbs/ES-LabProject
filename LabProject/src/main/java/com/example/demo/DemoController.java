@@ -5,6 +5,8 @@
  */
 package com.example.demo;
 
+import java.sql.Timestamp;    
+import java.util.Date;    
 import java.text.SimpleDateFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.TimeZone;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -31,21 +34,23 @@ public class DemoController {
        mv.addObject("demoTitle", "demoText");
        return mv;
     }
-   
    @RequestMapping("/")
    public ModelAndView home(){
-       
-       System.out.println("\nFrom the demo controller\n");
-       
+              
        ModelAndView mv = new ModelAndView("home.html");
+      
+       //GET LATEST BITCOINPRICE UPDATED EVERY 30 SEC
+       BitCoinPrice bcp = ScheduledTasks.bcp_stack.peek();
        
-       String URL = "http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/hp-daily-forecast-day0.json";
-       RestTemplate rt1 = new RestTemplate();
-       DailyForecast bcp = rt1.getForObject(URL, DailyForecast.class);
+       mv.addObject("btcprice", bcp );
        
-       
-       mv.addObject("forecast", bcp );
-
+       mv.addObject("time",timeStampToDate(bcp.getTimestamp()) );
        return mv;
     }
+   
+   public String timeStampToDate(int timestamp){
+        Timestamp ts=new Timestamp(System.currentTimeMillis());  
+        Date date=ts;  
+        return date.toString();
+   }
 }
