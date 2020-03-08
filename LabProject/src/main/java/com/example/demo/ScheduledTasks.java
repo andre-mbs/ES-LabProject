@@ -8,6 +8,9 @@ package com.example.demo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Stack;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -22,8 +25,11 @@ public class ScheduledTasks {
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         static public Stack<BitCoinPrice> bcp_stack = new Stack<BitCoinPrice>();
         
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+        EntityManager em = emf.createEntityManager();
+        
 	
-        @Scheduled(fixedRate = 30000) //UPDATE BCP EVERY 30 SEC
+        @Scheduled(fixedRate = 5000) //UPDATE BCP EVERY 30 SEC
 	public void updateBCP() {
           System.out.println("Updating BCP\nThe time is now " + dateFormat.format(new Date()));
 

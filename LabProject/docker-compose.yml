@@ -1,0 +1,11 @@
+db:
+    image: mysql
+    volumes:
+        - '/tmp/mysql:/var/lib/mysql'
+    environment:
+        - MYSQL_ROOT_PASSWORD=password
+        - MYSQL_DATABASE=demo
+        - MYSQL_USER=demo_user
+        - MYSQL_PASSWORD=demo_pass
+    ports:
+        - '3307:3306'
