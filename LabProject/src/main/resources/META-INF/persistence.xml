@@ -19,7 +19,8 @@ and open the template in the editor.
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.connection.useSSL" value="false" />
             <property name="hibernate.connection.allowPublicKeyRetrieval" value="true" />
-
+            <property name="spring." value="true" />
+            
             <!--
             <property name="hibernate.connection.verifyServerCertificate" value="false" />
             <property name="hibernate.connection.requireSSL" value="true" />

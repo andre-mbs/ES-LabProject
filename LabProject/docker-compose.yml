@@ -2,6 +2,7 @@ version: '3'
 services:
     db:
         image: mysql
+        container_name: labproject_db_1
         volumes:
             - '/tmp/mysql:/var/lib/mysql'
         environment:

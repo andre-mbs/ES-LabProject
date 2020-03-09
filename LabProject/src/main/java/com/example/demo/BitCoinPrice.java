@@ -12,10 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "id",
     "ticker",
     "timestamp",
     "success",
@@ -28,14 +30,15 @@ public class BitCoinPrice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
-    private Long id;
-    @Transient
+    private int id;
+    @OneToOne
     @JsonProperty("ticker")
     private Ticker ticker;
     @JsonProperty("timestamp")
     private Integer timestamp;
     @JsonProperty("success")
     private Boolean success;
+    @Transient
     @JsonProperty("error")
     private String error;
     @Transient
