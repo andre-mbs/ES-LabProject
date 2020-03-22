@@ -5,8 +5,8 @@
  */
 package com.example.demo;
 
-import java.sql.Timestamp;    
-import java.util.Date;    
+import java.sql.Timestamp;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,37 +20,39 @@ import java.util.TimeZone;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
 /**
  *
  * @author Tiago Feitor
  */
 @Controller
 public class DemoController {
-    
-   @RequestMapping("/demo") 
-   public ModelAndView demo(){
-       System.out.println("\nFrom the demo controller\n");
-       ModelAndView mv = new ModelAndView("demo.html");
-       mv.addObject("demoTitle", "demoText");
-       return mv;
+
+    @RequestMapping("/demo")
+    public ModelAndView demo() {
+        System.out.println("\nFrom the demo controller\n");
+        ModelAndView mv = new ModelAndView("demo.html");
+        mv.addObject("demoTitle", "demoText");
+        return mv;
     }
-   @RequestMapping("/")
-   public ModelAndView home(){
-              
-       ModelAndView mv = new ModelAndView("home.html");
-      
-       //GET LATEST BITCOINPRICE UPDATED EVERY 30 SEC
-       BitCoinPrice bcp = ScheduledTasks.bcp_stack.peek();
-       
-       mv.addObject("btcprice", bcp );
-       
-       mv.addObject("time",timeStampToDate(bcp.getTimestamp()) );
-       return mv;
+
+    @RequestMapping("/")
+    public ModelAndView home() {
+
+        ModelAndView mv = new ModelAndView("home.html");
+
+        //GET LATEST BITCOINPRICE UPDATED EVERY 30 SEC
+        BitCoinPrice bcp = ScheduledTasks.bcp_stack.peek();
+
+        mv.addObject("btcprice", bcp);
+
+        mv.addObject("time", timeStampToDate(bcp.getTimestamp()));
+        return mv;
     }
-   
-   public String timeStampToDate(int timestamp){
-        Timestamp ts=new Timestamp(System.currentTimeMillis());  
-        Date date=ts;  
+
+    public String timeStampToDate(int timestamp) {
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        Date date = ts;
         return date.toString();
-   }
+    }
 }
