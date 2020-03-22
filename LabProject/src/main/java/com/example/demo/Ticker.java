@@ -156,4 +156,9 @@ public class Ticker {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Ticker{" + "id=" + id + ", base=" + base + ", target=" + target + ", price=" + price + ", volume=" + volume + ", bcp_change=" + bcp_change + ", markets=" + markets + '}';
+    }
+
 }

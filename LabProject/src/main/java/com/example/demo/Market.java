@@ -123,4 +123,9 @@ public class Market {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "Market{" + "id=" + id + ", ticker_id=" + ticker_id + ", market=" + market + ", price=" + price + ", volume=" + volume + '}';
+    }
+
 }

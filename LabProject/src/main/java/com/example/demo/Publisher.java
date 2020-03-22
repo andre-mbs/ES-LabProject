@@ -27,10 +27,10 @@ public class Publisher {
     
     @GetMapping("/{message}")
     public String post(@PathVariable("message") final String message){
+        String bcp_str = ScheduledTasks.getBcp().toString();
+        publisherTemplate.send(TOPIC, bcp_str);
         
-        publisherTemplate.send(TOPIC, message);
-        
-        return "Message: " + message;
+        return "Message: " + bcp_str;
     }
     
 }

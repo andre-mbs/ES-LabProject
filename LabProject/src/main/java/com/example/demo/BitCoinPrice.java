@@ -139,4 +139,9 @@ public class BitCoinPrice {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "BitCoinPrice{" + "id=" + id + ", ticker=" + ticker + ", timestamp=" + timestamp + ", success=" + success + ", error=" + error + '}';
+    }
+
 }
