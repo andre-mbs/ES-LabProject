@@ -24,8 +24,6 @@ create table BitCoinPrice(
     primary key (id)
 );
  
- alter table BitCoinPrice add
-    constraint tickerID_BCP foreign key (ticker_id) references Ticker(id);
 alter table Ticker add
     constraint bcpid foreign key(bcp_id) references BitCoinPrice(id);
 alter table Market add

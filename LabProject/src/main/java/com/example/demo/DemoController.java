@@ -42,7 +42,10 @@ public class DemoController {
         ModelAndView mv = new ModelAndView("home.html");
 
         //GET LATEST BITCOINPRICE UPDATED EVERY 30 SEC
-        BitCoinPrice bcp = ScheduledTasks.bcp_stack.peek();
+         //GET LATEST BITCOINPRICE UPDATED EVERY 30 SEC
+        BitCoinPrice bcp;
+       //bpc = ScheduledTasks.bcp_stack.peek();
+        bcp = ScheduledTasks.ReadLatestBCP();
 
         mv.addObject("btcprice", bcp);
 
