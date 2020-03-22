@@ -58,7 +58,6 @@ public class ScheduledTasks {
     }
 
     public static BitCoinPrice getBcp() {
-        //TODO: Stack should be replaced by DB
         return bcp_stack.peek();
     }
 
