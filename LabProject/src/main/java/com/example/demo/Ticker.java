@@ -31,9 +31,9 @@ import javax.persistence.Transient;
 public class Ticker {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @JsonProperty("id")
-    private int id;
+    private int id ;
     @JsonProperty("base")
     private String base;
     @JsonProperty("target") //EUR USD
@@ -59,7 +59,7 @@ public class Ticker {
     }
 
     /**
-     *
+     * @param id
      * @param volume
      * @param markets
      * @param price
@@ -67,8 +67,10 @@ public class Ticker {
      * @param base
      * @param target
      */
-    public Ticker(String base, String target, String price, String volume, String change, List<Market> markets) {
+    public Ticker(int id, String base, String target, String price, String volume, String change, List<Market> markets) {
         super();
+        
+        this.id = id;
         this.base = base;
         this.target = target;
         this.price = price;
@@ -77,6 +79,10 @@ public class Ticker {
         this.markets = markets;
     }
 
+    @JsonProperty("id")
+    public void setID(int id) {
+        this.id =  id;
+    }
     @JsonProperty("base")
     public String getBase() {
         return base;
@@ -111,7 +117,10 @@ public class Ticker {
     public String getVolume() {
         return volume;
     }
-
+    @JsonProperty("id")
+    public int getID() {
+        return id;
+    }
     @JsonProperty("volume")
     public void setVolume(String volume) {
         this.volume = volume;

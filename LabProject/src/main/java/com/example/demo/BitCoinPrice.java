@@ -28,12 +28,14 @@ import javax.persistence.Transient;
 public class BitCoinPrice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @JsonProperty("id")
     private int id;
     @OneToOne
     @JsonProperty("ticker")
     private Ticker ticker;
+    //@JsonProperty("ticker_id")
+    //private int ticker_id;
     @JsonProperty("timestamp")
     private Integer timestamp;
     @JsonProperty("success")
@@ -53,14 +55,17 @@ public class BitCoinPrice {
     }
 
     /**
-     *
+     * @param id
+     * @param ticker_id
      * @param ticker
      * @param success
      * @param error
      * @param timestamp
      */
-    public BitCoinPrice(Ticker ticker, Integer timestamp, Boolean success, String error) {
+    public BitCoinPrice(int id,int ticker_id, Ticker ticker, Integer timestamp, Boolean success, String error) {
         super();
+        this.id = id;
+        //this.ticker_id = ticker_id;
         this.ticker = ticker;
         this.timestamp = timestamp;
         this.success = success;
@@ -76,7 +81,24 @@ public class BitCoinPrice {
     public void setTicker(Ticker ticker) {
         this.ticker = ticker;
     }
+  @JsonProperty("id")
+    public int getID() {
+        return id;
+    }
 
+    @JsonProperty("id")
+    public void setID(int tid) {
+        this.id = tid;
+    }
+  /*  @JsonProperty("ticker_id")
+    public int getTicker_ID() {
+        return ticker_id;
+    }
+
+    @JsonProperty("ticker_id")
+    public void setTicker_ID(int tid) {
+        this.ticker_id = tid;
+    }*/
     @JsonProperty("timestamp")
     public Integer getTimestamp() {
         return timestamp;

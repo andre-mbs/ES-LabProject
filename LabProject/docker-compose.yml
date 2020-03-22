@@ -1,10 +1,10 @@
 version: '3'
 services:
     db:
-        image: mysql
+        image: mysql:5.7
         container_name: labproject_db_1
         volumes:
-            - '/tmp/mysql:/var/lib/mysql'
+            - ./db-init:/init.sql
         environment:
             - MYSQL_ROOT_PASSWORD=password
             - MYSQL_DATABASE=demo

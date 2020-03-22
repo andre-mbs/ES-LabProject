@@ -26,7 +26,7 @@ import javax.persistence.Transient;
 public class Market {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @JsonProperty("id")
     private int id;
     @JsonProperty("ticker_id")
@@ -49,13 +49,17 @@ public class Market {
     }
 
     /**
-     *
+     * @param id
+     * @param ticker_id
      * @param market
      * @param volume
      * @param price
+     * 
      */
-    public Market(String market, String price, Float volume) {
-        super();
+    public Market(int id, int ticker_id, String market, String price, Float volume) {
+        super();      
+        this.ticker_id = id;
+        this.id = id;
         this.market = market;
         this.price = price;
         this.volume = volume;
@@ -82,15 +86,33 @@ public class Market {
     }
 
     @JsonProperty("volume")
-    public Float getVolume() {
-        return volume;
+    public String getVolume() {
+        return volume.toString();
     }
 
     @JsonProperty("volume")
     public void setVolume(Float volume) {
         this.volume = volume;
     }
+    
+     @JsonProperty("id")
+    public int getID() {
+        return id;
+    }
 
+    @JsonProperty("id")
+    public void setID(int tid) {
+        this.id = tid;
+    }
+    @JsonProperty("ticker_id")
+    public int getTicker_ID() {
+        return ticker_id;
+    }
+
+    @JsonProperty("ticker_id")
+    public void setTicker_ID(int tid) {
+        this.ticker_id = tid;
+    }
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
